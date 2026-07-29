@@ -1,19 +1,50 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <nav className="flex items-center justify-between px-8 py-5 bg-white">
-      <div className="text-2xl font-bold text-blue-600">
-        ExplainIQ
+    <nav className="max-w-6xl mx-auto px-6 py-4">
+      <div className="flex items-center justify-between">
+        <Link href="/" className="text-2xl font-bold text-blue-600">
+          ExplainIQ
+        </Link>
+
+        <div className="hidden md:flex gap-8 text-gray-600">
+          <a href="/#how-it-works" className="hover:text-blue-600">How it works</a>
+          <a href="/#features" className="hover:text-blue-600">Features</a>
+          <a href="/#about" className="hover:text-blue-600">About</a>
+        </div>
+
+        <div className="hidden md:block">
+          <Link href="/explain">
+            <button className="bg-blue-600 text-white px-5 py-2 rounded-xl font-medium hover:bg-blue-700 transition">
+              Get Started
+            </button>
+          </Link>
+        </div>
+
+        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
-      <div className="flex gap-6 text-gray-600">
-        <a href="#">How it works</a>
-        <a href="#">Features</a>
-        <a href="#">About</a>
-      </div>
-
-      <button className="rounded-full bg-blue-600 px-6 py-2 text-white font-semibold">
-        Get Started
-      </button>
+      {open && (
+        <div className="md:hidden flex flex-col gap-4 pt-4 pb-2 text-gray-600">
+          <a href="/#how-it-works" onClick={() => setOpen(false)} className="hover:text-blue-600">How it works</a>
+          <a href="/#features" onClick={() => setOpen(false)} className="hover:text-blue-600">Features</a>
+          <a href="/#about" onClick={() => setOpen(false)} className="hover:text-blue-600">About</a>
+          <Link href="/explain" onClick={() => setOpen(false)}>
+            <button className="bg-blue-600 text-white px-5 py-2 rounded-xl font-medium w-full">
+              Get Started
+            </button>
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
