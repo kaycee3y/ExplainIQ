@@ -1,3 +1,4 @@
+import ExplainForm from "@/components/ExplainForm";
 import Navbar from "@/components/Navbar";
 
 export default function Home() {
@@ -15,13 +16,13 @@ export default function Home() {
         </h1>
 
         <p className="mt-4 max-w-2xl text-xl">
-          Explain any topic in your own words, receive instant AI feedback,
-          and master concepts faster through active learning.
+          Learn faster by teaching what you know
         </p>
 
         <button className="mt-10 rounded-xl bg-blue-600 px-8 py-4 text-white">
-          Get Started
+          Teach a Concept
         </button>
+        <ExplainForm />
       </section>
     </main>
   );
